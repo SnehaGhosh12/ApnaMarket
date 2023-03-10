@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookHouse - Books</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+    crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href=" {% static '/ecom/css/style.css' %} ">
+    <link rel="stylesheet" href=" {% static '/ecom/css/product.css' %} ">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Rowdies&display=swap" rel="stylesheet">
+  </head>
+  <body>
+      {% include 'Navbar.html' %}
+      <center><h1 style="color:white;font-size: 3.5rem;
+        margin-top: 40px;
+        ">Books</h1></center>
+      <div class="container" style="padding: 15px;">
+  
+        {% comment %} {% for post in posts %}
+          <div class="card" style="width: 18rem;padding-top:10px;">
+            {% if post.image %}
+                  <img src="{{post.image.url}}" style="width: 200px; height: 200px; align-self: center;
+                  border-radius: 12px;">
+                {% endif %}
+            <div class="card-body" style="text-align: center;">
+              <h5 class="card-title">{{post.title}}</h5>
+              <p class="card-text">{{post.desc|safe}}</p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+            </div>
+        </div>
+        {% endfor %} {% endcomment %}
+        {% comment %} {% for post in posts %}
+        <div class="grid-wrapper">
+          {% if forloop.counter|divisibleby:3 %}
+            <div class="grid-item">
+              <h5 class="card-title">{{post.title}}</h5>
+              {% if post.image %}
+              <img src="{{post.image.url}}" style="width: 200px; height: 200px; align-self: center;
+                  border-radius: 12px;">
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %} {% endcomment %}
+      <div style="    display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 295px;
+      grid-gap: 2rem;
+      grid-auto-flow: row;
+      margin: -21px;">
+        {% for post in posts %}
+          <div class="boxx" style="display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left:10px;
+          height:278px;
+          width:420px;
+          font-weight: 200">
+            {% if post.image %}
+                  <img src="{{post.image.url}}" style="width: 200px; height: 100%; align-self: center;
+                  border-radius: 12px;">
+                {% endif %}
+          <div class="card-body" style="text-align: center;
+                                        height: 100%;
+                                        padding: 0px 10px;">
+            <h5 class="card-title" style="font-weight:600">{{post.title}}</h5>
+            <p class="card-text">{{post.desc|safe}}</p>
+            <a href="#" class="btn btn-primary" style="">But Now</a>
+            {% comment %} <button class="btn btn-primary" id="{{ post.title }}" name="{{ post.title }}" value="Add to cart"></button> {% endcomment %}
+          </div>  
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% include 'footer.html' %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+  </body>
+</html>

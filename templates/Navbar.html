@@ -1,0 +1,59 @@
+<nav class="navbar navbar-dark navbar-expand-lg " style="background:#0000007a">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"> <h4>Second Hand</h4> <h6 class="text-center">Book Store </h6></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link {%if request.path == "/home/"%} active {% endif %}" aria-current="page" href="/home/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {%if request.path == "/about/"%} active {% endif %}" href="/about/">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {%if request.path == "/product/"%} active {% endif %}" href="/product/">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {%if request.path == "/contact/"%} active {% endif %}" href="/contact/">Contact Us</a>
+          </li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link {%if request.path == "/dashboard/"%} active {% endif %}" href="/dashboard/">Dashboard</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link {%if request.path == "/admin/"%} active {% endif %} " href="/admin/">
+              <i class="fa-solid fa-user"></i>
+            </a>
+          </li>
+          {% if request.user.is_authenticated %}
+          <div style="position: relative; left:145%;">
+            <button type="button" class="btn btn-success py-0 me-2"><a class="nav-link {%if request.path == "/logout/"%} active {% endif %}" href="/logout/">Log out</a></button>
+          </div>
+          {% comment %} <div style="position: relative; left:147%;">
+            <li class="nav-item">
+              <a class="nav-link {%if request.path == "/cart/"%} active {% endif %} " href="/cart/">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </a>
+            </li>
+          </div> {% endcomment %}
+        </li>
+        {% else %}
+            <div style="position: relative; left:145%;">
+              <button type="button" class="btn btn-success py-0 me-2"><a class="nav-link {%if request.path == "/signup/"%} active {% endif %}" href="/signup/">Sign Up</a></button>
+            <button type="button" class="btn btn-success py-0" ><a class="nav-link {%if request.path == "/dashboard/"%} active {% endif %}" href="/signin/">Log in</a></button>
+            </div>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
